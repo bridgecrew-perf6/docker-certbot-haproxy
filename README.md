@@ -41,3 +41,9 @@ networks:
             config:
                 - subnet: "172.16.238.0/24"
 ```
+
+In HAProxy config:
+
+```
+bind *:443 ssl crt /etc/letsencrypt/haproxy accept-proxy alpn h2,http/1.1
+```
