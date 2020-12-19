@@ -45,7 +45,7 @@ networks:
 Include the certificates in HAProxy:
 
 ```
-bind *:443 ssl crt /etc/letsencrypt/haproxy accept-proxy alpn h2,http/1.1
+bind *:443 ssl crt /etc/letsencrypt/haproxy alpn h2,http/1.1
 ```
 Forward LetsEncrypt requests to the Certbot backend
 
