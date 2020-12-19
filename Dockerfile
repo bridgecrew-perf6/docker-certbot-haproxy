@@ -1,5 +1,5 @@
-FROM certbot:latest
+FROM certbot/certbot:latest
 
 COPY run.sh /
 
-ENTRYPOINT ["/run.sh"]
+ENTRYPOINT ["/bin/sh", "/run.sh"]

@@ -23,11 +23,11 @@ services:
         build: ../docker-certbot-haproxy
         volumes:
             - letsencrypt:/etc/letsencrypt:rw
-            - ./certbot:/certbot:ro
         depends_on:
             - haproxy
         environment:
-            - DOMAINS=www.jhalsey.com mail.jhalsey.com
+            - EMAIL= #Renewal email here
+            - DOMAINS=domain1.com domain2.com
         networks:
             default:
                 ipv4_address: 172.16.238.10 # Needs a static IP because we don't have enough time for DNS resolver to update
