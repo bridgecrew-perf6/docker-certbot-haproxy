@@ -2,7 +2,7 @@
 
 A docker container for LetsEncrypt certbot to use with a HAProxy server
 
-Example usage:
+Example Docker Compose config:
 
 ```
 version: '3.7'
@@ -42,8 +42,19 @@ networks:
                 - subnet: "172.16.238.0/24"
 ```
 
-In HAProxy config:
+Include the certificates in HAProxy:
 
 ```
 bind *:443 ssl crt /etc/letsencrypt/haproxy accept-proxy alpn h2,http/1.1
+```
+Forward LetsEncrypt requests to the Certbot backend
+
+```
+frontend http_in
+    bind :::80 v4v6
+    acl letsencrypt path_beg /.well-known/acme-challenge/
+    use_backend letsencrypt if letsencrypt
+    
+backend letsencrypt
+    server certbot 172.16.238.10:80
 ```
