@@ -2,7 +2,7 @@
 
 A docker container for LetsEncrypt certbot to use with a HAProxy server
 
-Example Docker Compose config:
+# Usage
 
 ```
 version: '3.7'
@@ -18,9 +18,9 @@ services:
         networks:
             - default
         restart: unless-stopped
-    certbot:
+    certbot-haproxy:
         pid: "service:haproxy" # Need to share PID so it can trigger reload
-        build: ../docker-certbot-haproxy
+        image: ghcr.io/jacob-pro/certbot-haproxy:latest
         volumes:
             - letsencrypt:/etc/letsencrypt:rw
         depends_on:
@@ -42,11 +42,12 @@ networks:
                 - subnet: "172.16.238.0/24"
 ```
 
-Include the certificates in HAProxy:
+Include the certificates in HAProxy config:
 
 ```
 bind *:443 ssl crt /etc/letsencrypt/haproxy alpn h2,http/1.1
 ```
+
 Forward LetsEncrypt requests to the Certbot backend
 
 ```
