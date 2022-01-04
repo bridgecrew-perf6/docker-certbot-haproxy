@@ -1,5 +1,7 @@
 # Docker Certbot HAProxy
 
+[![Build status](https://github.com/jacob-pro/docker-certbot-haproxy/actions/workflows/docker.yml/badge.svg)](https://github.com/jacob-pro/docker-certbot-haproxy/actions)
+
 A docker container for LetsEncrypt certbot to use with a HAProxy server
 
 # Usage
