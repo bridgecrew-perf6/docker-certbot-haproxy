@@ -61,3 +61,15 @@ frontend http_in
 backend letsencrypt
     server certbot 172.16.238.10:80
 ```
+
+## Chicken And Egg Problem
+
+If you are seeing HAProxy error `no SSL certificate specified for bind` or `unable to stat SSL certificate from file` this is because:
+
+- HAProxy cannot start a HTTPS bind without any certificates
+- Certbot can't generate a certificate without HAProxy running
+
+The solution is to either:
+
+- Comment out your HTTPS binding until Certbot has run once
+- Manually populate the /etc/letsencrypt/haproxy folder with a temporary certificate
