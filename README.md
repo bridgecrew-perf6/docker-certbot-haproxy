@@ -72,4 +72,4 @@ If you are seeing HAProxy error `no SSL certificate specified for bind` or `unab
 The solution is to either:
 
 - Comment out your HTTPS binding until Certbot has run once
-- Manually populate the /etc/letsencrypt/haproxy folder with a temporary certificate
+- Manually populate the `/etc/letsencrypt/haproxy` folder with a temporary certificate
